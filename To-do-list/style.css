@@ -1,21 +1,24 @@
-*{
+* {
     margin: 0;
     box-sizing: border-box;
     font-family: sans-serif;
-}
-.container{
-    background-image: url(https://as1.ftcdn.net/v2/jpg/01/21/62/38/1000_F_121623868_aRnyyn6hpRrQnC2ogSsVh68f4EVpgAD7.jpg);
+  }
+  .container {
+    background-image: url(https://c1.wallpaperflare.com/path/565/385/156/sunset-brook-green-meadow-june-df867360f0bed19da26bbb3838498c8f.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
     height: 100vh;
     width: 100vw;
-}
-.boards{
+    position: relative;
+  }
+  .boards {
     display: flex;
     flex-direction: row;
     gap: 15px;
     justify-content: center;
     padding-top: 100px;
-}
-.card{
+  }
+  .card {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -25,56 +28,113 @@
     border-radius: 10px;
     padding: 10px;
     gap: 10px;
-}
-.header{
+  }
+  .header {
     display: flex;
     flex-direction: row;
     gap: 10px;
     align-items: center;
     padding: 10px;
-}
-.listconatiner{
+  }
+  .listconatiner {
     display: flex;
     flex-direction: row;
     gap: 10px;
     padding: 10px;
-
-}
-.addbutton{
+  }
+  .addbutton {
     display: flex;
     flex-direction: row;
     gap: 10px;
     padding: 10px;
-}
-.list{
+  }
+  .list {
     display: flex;
     flex-direction: row;
     gap: 10px;
     padding: 10px;
     background-color: white;
     border-radius: 10px;
-}
-.icons{
+  }
+  .icons {
     display: flex;
     flex-direction: column;
     gap: 10px;
-}
-.details{
+  }
+  .details {
     display: flex;
     gap: 10px;
     flex-direction: column;
-}
-.btn{
+  }
+  .btn {
     border: 0.1px solid black;
     border-radius: 50%;
     background-color: white;
-}
-.btn:hover{
+  }
+  .btn:hover {
     background-color: #ebecf0;
     cursor: pointer;
-}
-.addbutton:hover{
+  }
+  .addbutton:hover {
     background-color: #cccccc;
     cursor: pointer;
     border-radius: 10px;
-}
+  }
+  .modal {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+    width: 400px;
+    background-color: #ffffff;
+    top: 20%;
+    right: 35%;
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .fieldcontainer {
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+  }
+  
+  .overlay {
+    width: 100%;
+    height: 100%;
+    background-color: #00000080;
+  }
+  
+  .form {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+  }
+  .title {
+    display: flex;
+    flex-direction: column;
+  }
+  .status {
+    display: flex;
+    flex-direction: column;
+  }
+  .priority {
+    display: flex;
+    flex-direction: column;
+  }
+  .endbutton {
+    width: 368px;
+    height: 40px;
+    background-color: black;
+    padding-bottom: 10px;
+    text-align: center;
+    color: #ffffff;
+    border-radius: 10px;
+  }
+  
