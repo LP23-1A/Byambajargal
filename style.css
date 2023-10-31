@@ -1,0 +1,80 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+.container{
+    background-image: url(https://as1.ftcdn.net/v2/jpg/01/21/62/38/1000_F_121623868_aRnyyn6hpRrQnC2ogSsVh68f4EVpgAD7.jpg);
+    height: 100vh;
+    width: 100vw;
+}
+.boards{
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    justify-content: center;
+    padding-top: 100px;
+}
+.card{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #ebecf0;
+    width: 210px;
+    height: fit-content;
+    border-radius: 10px;
+    padding: 10px;
+    gap: 10px;
+}
+.header{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    padding: 10px;
+}
+.listconatiner{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding: 10px;
+
+}
+.addbutton{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding: 10px;
+}
+.list{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 10px;
+}
+.icons{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.details{
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+}
+.btn{
+    border: 0.1px solid black;
+    border-radius: 50%;
+    background-color: white;
+}
+.btn:hover{
+    background-color: #ebecf0;
+    cursor: pointer;
+}
+.addbutton:hover{
+    background-color: #cccccc;
+    cursor: pointer;
+    border-radius: 10px;
+}
