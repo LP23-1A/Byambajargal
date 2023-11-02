@@ -19,7 +19,7 @@
             <p style="color: grey" id="counter">1</p>
           </div>
           <div class="listcontainer">
-            <div class="list">
+            <!-- <div class="list">
               <div>
                 <button class="btn"><i class="fa fa-check"></i></button>
               </div>
@@ -41,12 +41,9 @@
                 <button class="btn"><i class="fa fa-remove"></i></button>
                 <button class="btn"><i class="fa fa-edit"></i></button>
               </div>
-            </div>
+            </div> -->
           </div>
-          <div class="addbutton">
-            <i class="fa fa-plus"></i>
-            <p>Add card</p>
-          </div>
+          <button id="addbutton" > + Add card</button>
         </div>
         <div class="card">
           <div class="header">
@@ -54,7 +51,7 @@
             <p style="color: grey" id="counter">1</p>
           </div>
           <div class="listcontainer">
-            <div class="list">
+            <!-- <div class="list">
               <div>
                 <button class="btn"><i class="fa fa-check"></i></button>
               </div>
@@ -76,20 +73,17 @@
                 <button class="btn"><i class="fa fa-remove"></i></button>
                 <button class="btn"><i class="fa fa-edit"></i></button>
               </div>
-            </div>
+            </div> -->
           </div>
-          <div class="addbutton">
-            <i class="fa fa-plus"></i>
-            <p>Add card</p>
-          </div>
+          <button id="addbutton" onclick="openField()"> + Add card</button>
         </div>
         <div class="card">
           <div class="header">
             <h3>Stuck</h3>
             <p style="color: grey" id="counter">0</p>
           </div>
-          <!-- <div class="listcontainer">
-           <div class="list">
+          <div class="listcontainer">
+           <!-- <div class="list">
            <div>
               <button class="btn"><i class="fa fa-check"></i></button> 
            </div>
@@ -102,20 +96,17 @@
                <button class="btn"><i class="fa fa-remove"></i></button>
               <button class="btn"><i class="fa fa-edit"></i></button>
            </div>
-        </div>
-       </div> -->
-          <div class="addbutton">
-            <i class="fa fa-plus"></i>
-            <p>Add card</p>
-          </div>
+        </div> -->
+       </div>
+       <button id="addbutton"> + Add card</button>
         </div>
         <div class="card">
           <div class="header">
             <h3>Done</h3>
             <p style="color: grey" id="counter">0</p>
           </div>
-          <!-- <div class="listcontainer">
-       <div class="list">
+          <div class="listcontainer" >
+       <!-- <div class="list">
        <div>
           <button class="btn"><i class="fa fa-check"></i></button> 
        </div>
@@ -128,16 +119,13 @@
            <button class="btn"><i class="fa fa-remove"></i></button>
           <button class="btn"><i class="fa fa-edit"></i></button>
        </div>
-    </div>
-   </div> -->
-          <div class="addbutton">
-            <i class="fa fa-plus"></i>
-            <p>Add card</p>
-          </div>
+    </div> -->
+   </div>
+   <button id="addbutton" > + Add card</button>
         </div>
       </div>
     </div>
-    <div class="fieldcontainer">
+    <div class="fieldcontainer" >
       <div class="overlay"></div>
       <div class="modal">
         <div class="form">
@@ -177,12 +165,11 @@
             </select>
           </div>
           <div>
-            <button class="endbutton" type="submit">Add Task</button>
+            <button class="endbutton" onclick="addCard()" >Add Task</button>
           </div>
         </div>
       </div>
     </div>
     <script src="./index.js"></script>
-    <h1>lorem</h1>
   </body>
 </html>

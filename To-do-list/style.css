@@ -10,23 +10,24 @@
     height: 100vh;
     width: 100vw;
     position: relative;
+  
   }
   .boards {
     display: flex;
     flex-direction: row;
-    gap: 15px;
+    gap: 100px;
     justify-content: center;
-    padding-top: 100px;
+    padding: 100px;
+    
   }
   .card {
     display: flex;
     justify-content: center;
     flex-direction: column;
     background-color: #ebecf0;
-    width: 210px;
+    flex: 1;
     height: fit-content;
     border-radius: 10px;
-    padding: 10px;
     gap: 10px;
   }
   .header {
@@ -42,11 +43,12 @@
     gap: 10px;
     padding: 10px;
   }
-  .addbutton {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    padding: 10px;
+  #addbutton {
+   border-radius: 10px;
+   border: 0;
+   padding: 10px;
+   background-color: transparent;
+   
   }
   .list {
     display: flex;
@@ -70,12 +72,14 @@
     border: 0.1px solid black;
     border-radius: 50%;
     background-color: white;
+    height: 24px;
+    width: 24px;
   }
   .btn:hover {
     background-color: #ebecf0;
     cursor: pointer;
   }
-  .addbutton:hover {
+  #addbutton:hover {
     background-color: #cccccc;
     cursor: pointer;
     border-radius: 10px;
@@ -102,7 +106,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #00000080;
     display: none;
+    
   }
   
   .overlay {
