@@ -16,12 +16,12 @@
         <div class="card">
           <div class="header">
             <h3>To do</h3>
-            <p style="color: grey" id="counter">1</p>
+            <p style="color: grey" class="counter">0</p>
           </div>
           <div class="listcontainer">
             <!-- <div class="list">
               <div>
-                <button class="btn"><i class="fa fa-check"></i></button>
+                <button class="btn1"><i class="fa fa-check"></i></button>
               </div>
               <div class="details">
                 <h3>Todo</h3>
@@ -38,22 +38,22 @@
                 </button>
               </div>
               <div class="icons">
-                <button class="btn"><i class="fa fa-remove"></i></button>
-                <button class="btn"><i class="fa fa-edit"></i></button>
+                <button class="btn2"><i class="fa fa-remove"></i></button>
+                <button class="btn3"><i class="fa fa-edit"></i></button>
               </div>
             </div> -->
           </div>
-          <button id="addbutton" > + Add card</button>
+          <button id="addbutton">+ Add card</button>
         </div>
         <div class="card">
           <div class="header">
             <h3>In progress</h3>
-            <p style="color: grey" id="counter">1</p>
+            <p style="color: grey" class="counter">0</p>
           </div>
           <div class="listcontainer">
             <!-- <div class="list">
               <div>
-                <button class="btn"><i class="fa fa-check"></i></button>
+                <button class="btn1"><i class="fa fa-check"></i></button>
               </div>
               <div class="details">
                 <h3>Todo</h3>
@@ -70,22 +70,22 @@
                 </button>
               </div>
               <div class="icons">
-                <button class="btn"><i class="fa fa-remove"></i></button>
-                <button class="btn"><i class="fa fa-edit"></i></button>
+                <button class="btn2"><i class="fa fa-remove"></i></button>
+                <button class="btn3"><i class="fa fa-edit"></i></button>
               </div>
             </div> -->
           </div>
-          <button id="addbutton" onclick="openField()"> + Add card</button>
+          <button id="addbutton" onclick="openField()">+ Add card</button>
         </div>
         <div class="card">
           <div class="header">
             <h3>Stuck</h3>
-            <p style="color: grey" id="counter">0</p>
+            <p style="color: grey" class="counter">0</p>
           </div>
           <div class="listcontainer">
-           <!-- <div class="list">
+            <!-- <div class="list">
            <div>
-              <button class="btn"><i class="fa fa-check"></i></button> 
+              <button class="btn1"><i class="fa fa-check"></i></button> 
            </div>
            <div class="details">
                <h3>Todo</h3>
@@ -93,22 +93,22 @@
                <button style="border-radius: 5px; width: 50px; border:0.1px solid black; background-color: white;">High</button>
            </div>
            <div class="icons">
-               <button class="btn"><i class="fa fa-remove"></i></button>
-              <button class="btn"><i class="fa fa-edit"></i></button>
+               <button class="btn2"><i class="fa fa-remove"></i></button>
+              <button class="btn3"><i class="fa fa-edit"></i></button>
            </div>
         </div> -->
-       </div>
-       <button id="addbutton"> + Add card</button>
+          </div>
+          <button id="addbutton">+ Add card</button>
         </div>
         <div class="card">
           <div class="header">
             <h3>Done</h3>
-            <p style="color: grey" id="counter">0</p>
+            <p style="color: grey" class="counter">0</p>
           </div>
-          <div class="listcontainer" >
-       <!-- <div class="list">
+          <div class="listcontainer">
+            <!-- <div class="list">
        <div>
-          <button class="btn"><i class="fa fa-check"></i></button> 
+          <button class="btn1"><i class="fa fa-check"></i></button> 
        </div>
        <div class="details">
            <h3>Todo</h3>
@@ -116,16 +116,16 @@
            <button style="border-radius: 5px; width: 50px; border:0.1px solid black; background-color: white;">High</button>
        </div>
        <div class="icons">
-           <button class="btn"><i class="fa fa-remove"></i></button>
-          <button class="btn"><i class="fa fa-edit"></i></button>
+           <button class="btn2"><i class="fa fa-remove"></i></button>
+          <button class="btn3"><i class="fa fa-edit"></i></button>
        </div>
     </div> -->
-   </div>
-   <button id="addbutton" > + Add card</button>
+          </div>
+          <button id="addbutton">+ Add card</button>
         </div>
       </div>
     </div>
-    <div class="fieldcontainer" >
+    <div class="fieldcontainer">
       <div class="overlay"></div>
       <div class="modal">
         <div class="form">
@@ -133,12 +133,12 @@
             <h1>Add Task</h1>
           </div>
           <div class="title">
-            <label name="title">Title</label>
-            <input id="title" name="title" />
+            <label>Title</label>
+            <input id="todoname" />
             <!-- <p class="helper-text">Бөглөнө үү</p> -->
           </div>
           <div>
-            <label name="desription">Description</label>
+            <label>Description</label>
             <textarea
               id="description"
               name="description"
@@ -148,24 +148,24 @@
             <!-- <p  class="helper-text">Бөглөнө үү</p> -->
           </div>
           <div class="status">
-            <label name="status">Status</label>
-            <select name="status" id="status">
-              <option value="status">To do</option>
-              <option value="status">In progress</option>
-              <option value="status">Stuck</option>
-              <option value="status">Done</option>
+            <label>Status</label>
+            <select id="status">
+              <option value="todo">To do</option>
+              <option value="in-progress">In progress</option>
+              <option value="stuck">Stuck</option>
+              <option value="done">Done</option>
             </select>
           </div>
           <div class="priority">
-            <label name="priority">Priority</label>
-            <select name="priority" id="priority">
+            <label>Priority</label>
+            <select id="priorityM">
               <option value="low">low</option>
               <option value="medium">medium</option>
               <option value="high">high</option>
             </select>
           </div>
           <div>
-            <button class="endbutton" onclick="addCard()" >Add Task</button>
+            <button class="endbutton" onclick="addCard()">Add Task</button>
           </div>
         </div>
       </div>

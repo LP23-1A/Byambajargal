@@ -15,7 +15,7 @@
   .boards {
     display: flex;
     flex-direction: row;
-    gap: 100px;
+    gap: 20px;
     justify-content: center;
     padding: 100px;
     
@@ -38,6 +38,7 @@
     padding: 10px;
   }
   .listconatiner {
+    width: 100%;
     display: flex;
     flex-direction: row;
     gap: 10px;
@@ -46,7 +47,7 @@
   #addbutton {
    border-radius: 10px;
    border: 0;
-   padding: 10px;
+   padding: 20px;
    background-color: transparent;
    
   }
@@ -68,14 +69,36 @@
     gap: 10px;
     flex-direction: column;
   }
-  .btn {
+  .btn1 {
+    border: 0.1px solid black;
+    border-radius: 50%;
+    background-color: transparent;
+    height: 24px;
+    width: 24px;
+  }
+  .btn2 {
     border: 0.1px solid black;
     border-radius: 50%;
     background-color: white;
     height: 24px;
     width: 24px;
   }
-  .btn:hover {
+  .btn3 {
+    border: 0.1px solid black;
+    border-radius: 50%;
+    background-color: white;
+    height: 24px;
+    width: 24px;
+  }
+  .btn1:hover {
+    background-color: #ebecf0;
+    cursor: pointer;
+  }
+  .btn2:hover {
+    background-color: #ebecf0;
+    cursor: pointer;
+  }
+  .btn3:hover {
     background-color: #ebecf0;
     cursor: pointer;
   }

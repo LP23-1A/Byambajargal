@@ -1,89 +1,89 @@
-let addbutton = document.getElementById("addbutton");
+let addbutton = document.querySelectorAll("#addbutton");
 let fieldcontainer = document.getElementsByClassName("fieldcontainer")[0];
-let overlay=document.getElementsByClassName("overlay")[0];
+let overlay = document.getElementsByClassName("overlay")[0];
+let todoname = document.getElementById("todoname");
+let description = document.getElementById("description");
+let statusM = document.getElementById("status");
+let priorityM = document.getElementById("priorityM");
+let btn2=document.querySelectorAll("#btn2");
+let counter=document.querySelectorAll("#counter");
+let listcontainer=document.querySelectorAll("#listcontainer");
 
-function openField()
-{
-fieldcontainer.style.display= "block";
+function openField() {
+  fieldcontainer.style.display = "block";
 }
-function closeField(){
-  fieldcontainer.style.display="none"
+function closeField() {
+  fieldcontainer.style.display = "none";
+}
+
+for (let i = 0; i < addbutton.length; i++) {
+  addbutton[i].onclick = openField;
+}
+
+function closeTodo(){
+listcontainer.remove();
+}
+
+for (let a = 0; a<btn2.length; a++) {
+btn2[a].onclick=closeTodo;
+}
   
-}
-addbutton.onclick = openField;
-
-overlay.onclick= closeField;
 
 
-const data = [
-  {
-  title: 'todo',
-  desc: 'this is a todo card',
-  status: 'done',
-  priority: 'High',
-  },
-  {
-  title: 'todo',
-  desc: 'this is a todo card',
-  status: 'todo',
-  priority: 'low',
-  },
-  {
-  title: 'test',
-  desc: 'this is a todo card',
-  status: 'stuck',
-  priority: 'medium',
-  },
-  {
-  title: 'in progress',
-  desc: 'this is a todo card',
-  status: 'in progcess',
-  priority: 'High',
-  },
-  {
-  title: 'test-now',
-  desc: 'this is a todo card',
-  status: 'done',
-  priority: 'High',
-  },
-  ];
-  function render(data){
-   const listcontainer=document.getElementsByClassName("listcontainer")[0];
+overlay.onclick = closeField;
+
+const data = [];
+function render(data) {
+  const listcontainer = document.getElementsByClassName("listcontainer");
   //  const done = []
-   listcontainer.innerHTML=""
-   for(let i=0 ; i < data.length ; i++){
-    listcontainer.innerHTML += createCard(data[i]);
-    
-   }
+  // listcontainer.innerHTML = "";
+  // console.log(data);
+
+  const dataLastIndex = data[data.length - 1];
+
+  if (dataLastIndex.status === "todo") {
+    listcontainer[0].innerHTML += createCard(dataLastIndex);
   }
-  function addCard(){
-    const Mockdata={
-      title:'',
-      desc:'',
-      status:'',
-      priority:'',
-    }
-    Mockdata.title="hi";
-    Mockdata.desc="description";
-    Mockdata.status="in progress";
-    Mockdata.priority="low";
-    data.push(Mockdata);
-    render(data)
-  
+  if (dataLastIndex.status === "in-progress") {
+    listcontainer[1].innerHTML += createCard(dataLastIndex);
   }
-  function createCard(list){
-    const { title, desc, priority } = list;
-    return `<div class="list">
-      <button class="btn"><i class="fa fa-check"></i></button>
+  if (dataLastIndex.status === "stuck") {
+    listcontainer[2].innerHTML += createCard(dataLastIndex);
+  }
+  if (dataLastIndex.status === "done") {
+    listcontainer[3].innerHTML += createCard(dataLastIndex);
+  }
+}
+function addCard() {
+  const Mockdata = {
+    title: "",
+    desc: "",
+    status: "",
+    priority: "",
+  };
+
+  Mockdata.title = todoname.value;
+  Mockdata.desc = description.value;
+  Mockdata.status = statusM.value;
+  Mockdata.priority = priorityM.value;
+
+  data.push(Mockdata);
+  render(data);
+}
+function createCard(list) {
+  const { title, desc, priority } = list;
+  return `<div class="list">
+      <button class="btn1"><i class="fa fa-check"></i></button>
     <div class="details">
-      <h3>Todo</h3>
-      <p>This is a todo card</p>
-      <button>High</button>
+      <h3>${title}</h3>
+      <p>${desc} </p>
+      <button>${priority}</button>
     </div>
     <div class="icons">
-      <button class="btn"><i class="fa fa-remove"></i></button>
-      <button class="btn"><i class="fa fa-edit"></i></button>
+      <button class="btn2"><i class="fa fa-remove"></i></button>
+      <button class="btn3"><i class="fa fa-edit"></i></button>
     </div>
-  </div>`
-  }
-  render(data)
+  </div>`;
+}
+
+
