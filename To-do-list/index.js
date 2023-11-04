@@ -21,12 +21,13 @@ for (let i = 0; i < addbutton.length; i++) {
 }
 
 function closeTodo(){
-listcontainer.remove();
+listcontainer.style.display = "none";
 }
 
-for (let a = 0; a<btn2.length; a++) {
-btn2[a].onclick=closeTodo;
-}
+
+btn2.onclick = closeTodo;
+console.log("working")
+
   
 
 
@@ -35,9 +36,6 @@ overlay.onclick = closeField;
 const data = [];
 function render(data) {
   const listcontainer = document.getElementsByClassName("listcontainer");
-  //  const done = []
-  // listcontainer.innerHTML = "";
-  // console.log(data);
 
   const dataLastIndex = data[data.length - 1];
 
@@ -70,6 +68,8 @@ function addCard() {
   data.push(Mockdata);
   render(data);
 }
+let id = Math.random();
+
 function createCard(list) {
   const { title, desc, priority } = list;
   return `<div class="list">
@@ -77,7 +77,7 @@ function createCard(list) {
     <div class="details">
       <h3>${title}</h3>
       <p>${desc} </p>
-      <button>${priority}</button>
+      <button class="button">${priority}</button>
     </div>
     <div class="icons">
       <button class="btn2"><i class="fa fa-remove"></i></button>
