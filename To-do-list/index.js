@@ -10,11 +10,13 @@ let counter = document.querySelectorAll("#counter");
 let list = document.querySelectorAll("#list");
 let icons = document.getElementsByClassName("icon")[0];
 let drag = document.getElementsByClassName("drag");
-
-
+let addTask = document.querySelector(".endbutton");
 function randomNumberGanerate() {
   return String(Math.random(1));
 }
+// function rng(){
+//   return String(Math.random(1));
+// }
 
 function openField() {
   fieldcontainer.style.display = "block";
@@ -26,18 +28,6 @@ function closeField() {
 for (let i = 0; i < addbutton.length; i++) {
   addbutton[i].onclick = openField;
 }
-
-// let btn2 =  document.querySelector('.btn2')
-// let btn3 = document.querySelector('.btn3')
-// function closeTodo(){
-// btn2.remove();
-// }
-// btn3[0].onclick = closeTodo
-// btn2.addEventListener("click" , () => {
-//   alert ("clicked")
-// })
-
-// btn2.onclick=closeTodo;
 
 overlay.onclick = closeField;
 
@@ -73,8 +63,34 @@ function render(data) {
       deleteItem(element);
     };
   });
+
+  let edit = document.querySelectorAll(".edit");
+  edit.forEach((element) => {
+    element.onclick = function () {
+      openField();
+      editItem(element);
+    };
+  });
 }
-function addCard() {
+function addCard(action, element) {
+  if (action === "edit") {
+    const editId = element.id;
+
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].id == editId) {
+        console.log(editId, element.id);
+        console.log(description.value);
+        data[i].title = todoname.value;
+        data[i].desc = description.value;
+        data[i].status = statusM.value;
+        data[i].priority = priorityM.value;
+      }
+    }
+    render(data);
+    closeField();
+    return;
+  }
+
   const Mockdata = {
     id: "",
     title: "",
@@ -91,13 +107,13 @@ function addCard() {
 
   data.push(Mockdata);
   render(data);
-  // closeTodo();
+  closeField();
 }
 
 // let id = Math.random();
 
 function createCard(list) {
-  const { id, title, desc, priority } = list;
+  const { id, title, desc, priority, id1 } = list;
   return `<div class="list">
       <button class="btn1"><i class="fa fa-check"></i></button>
     <div class="details">
@@ -107,7 +123,7 @@ function createCard(list) {
     </div>
     <div class="icons">
       <button class="remove" id="${id}"><i class="fa fa-remove"></i></button>
-      <button class="btn3"><i class="fa fa-edit"></i></button>
+      <button class="edit" id="${id}"  ><i class="fa fa-edit"></i></button>
     </div>
   </div>`;
 }
@@ -123,3 +139,13 @@ function deleteItem(element) {
 
   render(data);
 }
+
+function editItem(element) {
+  addTask.onclick = function () {
+    addCard("edit", element);
+  };
+}
+
+addTask.onclick = function () {
+  addCard("add");
+};
