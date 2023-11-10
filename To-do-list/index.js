@@ -11,18 +11,18 @@ let drag = document.getElementsByClassName("drag");
 let addTask = document.querySelector(".endbutton");
 let listcontainer = document.querySelectorAll("#listcontainer");
 
-for (drag of drag) {
-  drag.addEventListener("dragstart", function (e) {
-    let selected = e.target;
-  });
-  listcontainer.addEventListener("dragover", function (e) {
-    e.preventDefault();
-  });
-  listcontainer.addEventListener("drop", function (e) {
-    listcontainer.appenChild(selected);
-    selected = null;
-  });
-}
+// for (drag of drag) {
+//   drag.addEventListener("dragstart", function (e) {
+//     let selected = e.target;
+//   });
+//   listcontainer.addEventListener("dragover", function (e) {
+//     e.preventDefault();
+//   });
+//   listcontainer.addEventListener("drop", function (e) {
+//     listcontainer.appenChild(selected);
+//     selected = null;
+//   });
+// }
 
 function randomNumberGanerate() {
   return String(Math.random(1));
@@ -37,12 +37,12 @@ function closeField() {
 
 for (let i = 0; i < addbutton.length; i++) {
   addbutton[i].onclick = openField;
+ 
 }
 counter = 0;
 overlay.onclick = closeField;
 
-let data = [];
-
+data = [];
 function render(data) {
   const listcontainer = document.getElementsByClassName("listcontainer");
 
@@ -50,7 +50,6 @@ function render(data) {
   listcontainer[1].innerHTML = "";
   listcontainer[2].innerHTML = "";
   listcontainer[3].innerHTML = "";
-  let counter = 0;
   data.forEach((element) => {
     if (element.status === "todo") {
       listcontainer[0].innerHTML += createCard(element);
@@ -64,7 +63,6 @@ function render(data) {
     if (element.status === "done") {
       listcontainer[3].innerHTML += createCard(element);
     }
-    counter = counter + 1;
   });
 
   let removeBtn = document.querySelectorAll(".remove");
@@ -79,7 +77,10 @@ function render(data) {
   edit.forEach((element) => {
     element.onclick = function () {
       openField();
-      editItem(element);
+      editItem("edit" , element)
+
+      todoname.value = "";
+      description.value = "";
     };
   });
 
@@ -92,28 +93,16 @@ function render(data) {
   });
 }
 function addCard(action, element) {
-  console.log(action);
+  console.log(action, element);
   if (action === "edit") {
-    const editId = element.id;
-
-    for (let i = 0; i < data.length; i++) {
-      if (data[i].id == editId) {
-        console.log(editId, element.id);
-        console.log(description.value);
-        data[i].title = todoname.value;
-        data[i].desc = description.value;
-        data[i].status = statusM.value;
-        data[i].priority = priorityM.value;
-      }
-    }
-    render(data);
-    closeField();
     addTask.onclick = function () {
-      addCard("add");
+      editItem( "edit" , element);
+      render(data);
+      closeField();
     };
     return;
   }
-
+ 
   const Mockdata = {
     id: "",
     title: "",
@@ -121,7 +110,6 @@ function addCard(action, element) {
     status: "",
     priority: "",
   };
-
   Mockdata.id = randomNumberGanerate();
   Mockdata.title = todoname.value;
   Mockdata.desc = description.value;
@@ -130,11 +118,11 @@ function addCard(action, element) {
 
   data.push(Mockdata);
   render(data);
-  closeField();
-}
-
-// let id = Math.random();
-
+  }
+// addTask.onclick = function(){
+//    addCard("add")
+//    render(data)
+// }
 function createCard(list) {
   const { id, title, desc, priority } = list;
   return `
@@ -166,15 +154,11 @@ function deleteItem(element) {
   render(data);
 }
 
-function editItem(element) {
-  addTask.onclick = function () {
-    addCard("edit", element);
-  };
-}
-
 addTask.onclick = function () {
   addCard("add");
+  render(data); 
 };
+
 function moveCard(element) {
   const moveId = element.id;
   console.log(element.id, moveId);
@@ -186,3 +170,16 @@ function moveCard(element) {
   }
   return;
 }
+function editItem(element) {
+  const editId = element.id;
+  for (i = 0; i < data.length; i++) {
+    if (data[i].id == editId) {
+      data[i].title = todoname.value;
+      data[i].desc = description.value;
+      data[i].status = statusM.value;
+      data[i].priority = priorityM.value;
+    }
+  }
+  return;
+}
+render(data);
