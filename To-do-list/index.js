@@ -25,6 +25,7 @@ for (let i = 0; i < addbutton.length; i++) {
   addbutton[i].onclick = openField;
   todoname.value = "";
   description.value = "";
+
 }
 counter = 0;
 overlay.onclick = closeField;
@@ -224,9 +225,27 @@ function dragAndDrop() {
     //   }
     //   render(data);
     //  });
+    changeStatus();
     });
   });
 };
+function changeStatus(){
+  let id= draggedItem.getAttribute("data-id");
+  console.log(draggedItem);
+  data = data.map((el , index) => {
+    if(el.id === id ){
+      if(index === 0 ){
+        el.status = "todo"
+      } else if (index === 1){
+        el.status= "in-progress"
+      } else if ( index === 2){
+        el.status = "stuck"
+      } else 
+      el.status = "done"
+    }
+  })
+  return;
+}
 
   
 
