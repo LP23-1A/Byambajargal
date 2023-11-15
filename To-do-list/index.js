@@ -7,22 +7,8 @@ let statusM = document.getElementById("status");
 let priorityM = document.getElementById("priorityM");
 let counter = document.querySelectorAll("#counter");
 let list = document.querySelectorAll("#list");
-let drag = document.getElementsByClassName("drag");
 let addTask = document.querySelector(".endbutton");
-let listcontainer = document.querySelectorAll("#listcontainer");
-
-// for (drag of drag) {
-//   drag.addEventListener("dragstart", function (e) {
-//     let selected = e.target;
-//   });
-//   listcontainer.addEventListener("dragover", function (e) {
-//     e.preventDefault();
-//   });
-//   listcontainer.addEventListener("drop", function (e) {
-//     listcontainer.appenChild(selected);
-//     selected = null;
-//   });
-// }
+let draggedItem = null;
 
 function randomNumberGanerate() {
   return String(Math.random(1));
@@ -37,12 +23,14 @@ function closeField() {
 
 for (let i = 0; i < addbutton.length; i++) {
   addbutton[i].onclick = openField;
- 
+  todoname.value = "";
+  description.value = "";
 }
 counter = 0;
 overlay.onclick = closeField;
 
-data = [];
+let data = [];
+
 function render(data) {
   const listcontainer = document.getElementsByClassName("listcontainer");
 
@@ -50,6 +38,7 @@ function render(data) {
   listcontainer[1].innerHTML = "";
   listcontainer[2].innerHTML = "";
   listcontainer[3].innerHTML = "";
+  let counter = 0;
   data.forEach((element) => {
     if (element.status === "todo") {
       listcontainer[0].innerHTML += createCard(element);
@@ -63,6 +52,7 @@ function render(data) {
     if (element.status === "done") {
       listcontainer[3].innerHTML += createCard(element);
     }
+    counter = counter + 1;
   });
 
   let removeBtn = document.querySelectorAll(".remove");
@@ -77,10 +67,11 @@ function render(data) {
   edit.forEach((element) => {
     element.onclick = function () {
       openField();
-      editItem("edit" , element)
-
+      editItem(element);
       todoname.value = "";
       description.value = "";
+      priorityM.value = "";
+      statusM.value = "";
     };
   });
 
@@ -93,16 +84,32 @@ function render(data) {
   });
 }
 function addCard(action, element) {
-  console.log(action, element);
+  console.log(action);
   if (action === "edit") {
+    const editId = element.id;
+
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].id == editId) {
+        console.log(editId, element.id);
+        console.log(description.value);
+        data[i].title = todoname.value;
+        data[i].desc = description.value;
+        data[i].status = statusM.value;
+        data[i].priority = priorityM.value;
+      }
+    }
+    render(data);
+    todoname.value = "";
+    description.value = "";
+    priorityM.value = "";
+    statusM.value = "";
+    closeField();
     addTask.onclick = function () {
-      editItem( "edit" , element);
-      render(data);
-      closeField();
+      addCard("add");
     };
     return;
   }
- 
+
   const Mockdata = {
     id: "",
     title: "",
@@ -110,6 +117,7 @@ function addCard(action, element) {
     status: "",
     priority: "",
   };
+
   Mockdata.id = randomNumberGanerate();
   Mockdata.title = todoname.value;
   Mockdata.desc = description.value;
@@ -118,15 +126,14 @@ function addCard(action, element) {
 
   data.push(Mockdata);
   render(data);
-  }
-// addTask.onclick = function(){
-//    addCard("add")
-//    render(data)
-// }
+  dragAndDrop();
+  closeField();
+}
+
 function createCard(list) {
   const { id, title, desc, priority } = list;
   return `
-  <div class="drag" draggable="true">
+  <div class="drag" draggable="true" id="test" data-id="${id}" >
     <div class="list">
        <button class="check" id= "${id}"><i class="fa fa-check"></i></button>
       <div class="details">
@@ -142,26 +149,25 @@ function createCard(list) {
   </div>
   `;
 }
-
 function deleteItem(element) {
   const findId = element.id;
   const newArr = data.filter((el) => {
     console.log(el.id, findId);
     return el.id !== findId;
   });
-
   data = newArr;
   render(data);
 }
-
+function editItem(element) {
+  addTask.onclick = function () {
+    addCard("edit", element);
+  };
+}
 addTask.onclick = function () {
   addCard("add");
-  render(data); 
 };
-
 function moveCard(element) {
   const moveId = element.id;
-  console.log(element.id, moveId);
   for (a = 0; a < data.length; a++) {
     if (data[a].id === moveId) {
       data[a].status = "done";
@@ -170,16 +176,57 @@ function moveCard(element) {
   }
   return;
 }
-function editItem(element) {
-  const editId = element.id;
-  for (i = 0; i < data.length; i++) {
-    if (data[i].id == editId) {
-      data[i].title = todoname.value;
-      data[i].desc = description.value;
-      data[i].status = statusM.value;
-      data[i].priority = priorityM.value;
-    }
-  }
-  return;
-}
-render(data);
+function dragAndDrop() {
+  let drag = document.querySelectorAll(".drag");
+  let card = document.querySelectorAll(".card");
+  drag.forEach((drag) => {
+    drag.addEventListener("dragstart", (event) => {
+      draggedItem = event.target;
+      event.dataTransfer.setData("text", event.target.getAttribute("data-id"));
+    });
+    drag.addEventListener("dragend", () => {
+      draggedItem = null;
+    });
+  });
+  card.forEach((card, index) => {
+    console.log(index);
+    card.addEventListener("dragover", (event) => {
+      event.preventDefault();
+      if (draggedItem) {
+        const draggingBoard = draggedItem.parentNode;
+        if (draggingBoard !== event.currentTarget) {
+          event.currentTarget
+            .querySelector(".listcontainer")
+            .appendChild(draggedItem);
+        }
+      }
+    });
+    card.addEventListener("dragleave", () => {});
+    card.addEventListener("drop", (event) => {
+      event.preventDefault();
+
+    //  let id = draggedItem.getAttribute("data-id");
+    //  console.log(draggedItem);
+    //  data = data.map((el , index) => {
+    //   console.log(index);
+    //   if (el.id === id) {
+    //     if(index === 0 ) {
+    //       el.status = "todo"
+    //     }
+    //     else if(index === 1 ) {
+    //      el.status = "in-progress"
+    //     }
+    //     else if( index === 2 ) {
+    //       el.status = "stuck"
+    //     }
+    //     else  index === 3 
+    //       el.status = "done"
+    //   }
+    //   render(data);
+    //  });
+    });
+  });
+};
+
+  
+
