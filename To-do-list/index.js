@@ -31,6 +31,13 @@ overlay.onclick = closeField;
 let data = [];
 
 function render(data) {
+  let count = {
+    todo:0,
+    inprogress:0,
+    stuck:0,
+    done:0,
+  };
+  
   const listcontainer = document.getElementsByClassName("listcontainer");
 
   listcontainer[0].innerHTML = "";
@@ -41,17 +48,28 @@ function render(data) {
   data.forEach((element) => {
     if (element.status === "todo") {
       listcontainer[0].innerHTML += createCard(element);
+      count.todo += 1;
     }
     if (element.status === "in-progress") {
       listcontainer[1].innerHTML += createCard(element);
+      count.inprogress +=1;
     }
     if (element.status === "stuck") {
       listcontainer[2].innerHTML += createCard(element);
+      count.stuck += 1;
     }
     if (element.status === "done") {
       listcontainer[3].innerHTML += createCard(element);
+      count.done +=1
     }
   });
+  let counter = document.querySelectorAll(".counter")
+ 
+   counter[0].innerHTML=count.todo;
+   counter[1].innerHTML=count.inprogress;
+   counter[2].innerHTML=count.stuck;
+   counter[3].innerHTML=count.done;
+  
 
   let removeBtn = document.querySelectorAll(".remove");
 
@@ -164,7 +182,11 @@ function editItem(element) {
 }
 addTask.onclick = function () {
   addCard("add");
-  plusCount();
+  todoname.value = "";
+  description.value = "";
+  priorityM.value = "";
+  statusM.value = "";
+
 };
 function moveCard(element) {
   const moveId = element.id;
@@ -177,6 +199,12 @@ function moveCard(element) {
   return;
 }
 function dragAndDrop() {
+  let count = {
+    todo:0,
+    inprogress:0,
+    stuck:0,
+    done:0,
+  };
   let drag = document.querySelectorAll(".drag");
   let card = document.querySelectorAll(".card");
   drag.forEach((drag) => {
@@ -188,8 +216,7 @@ function dragAndDrop() {
       draggedItem = null;
     });
   });
-  card.forEach((card, index) => {
-    console.log(index);
+  card.forEach((card,) => {
     card.addEventListener("dragover", (event) => {
       event.preventDefault();
       if (draggedItem) {
@@ -207,28 +234,28 @@ function dragAndDrop() {
       let id = draggedItem.getAttribute("data-id");
       data.map((el) => {
         if (el.id == id) {
+          console.log(el.id , id);
           if (event.currentTarget.id === "todo") {
             el.status = "todo";
-            console.log(event.currentTarget.id);
+            count.todo += 1;
+          
           }
           if (event.currentTarget.id === "inprogress") {
             el.status = "in-progress";
+            count.inprogress +=1;
           }
           if (event.currentTarget.id === "stuck") {
             el.status = "stuck";
+            count.stuck +=1;
           }
           if (event.currentTarget.id === "done") {
             el.status = "done";
+            count.done +=1;
           }
         }
+        render(data)
       });
     });
   });
-}
-let count = {
-  todo:0,
-  inprogress:0,
-  stuck:0,
-  done:0
 }
 
