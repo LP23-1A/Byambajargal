@@ -25,6 +25,8 @@ for (let i = 0; i < addbutton.length; i++) {
   addbutton[i].onclick = openField;
   todoname.value = "";
   description.value = "";
+  statusM.value = "";
+  priorityM.value = "";
 }
 overlay.onclick = closeField;
 
@@ -32,12 +34,12 @@ let data = [];
 
 function render(data) {
   let count = {
-    todo:0,
-    inprogress:0,
-    stuck:0,
-    done:0,
+    todo: 0,
+    inprogress: 0,
+    stuck: 0,
+    done: 0,
   };
-  
+
   const listcontainer = document.getElementsByClassName("listcontainer");
 
   listcontainer[0].innerHTML = "";
@@ -52,7 +54,7 @@ function render(data) {
     }
     if (element.status === "in-progress") {
       listcontainer[1].innerHTML += createCard(element);
-      count.inprogress +=1;
+      count.inprogress += 1;
     }
     if (element.status === "stuck") {
       listcontainer[2].innerHTML += createCard(element);
@@ -60,16 +62,15 @@ function render(data) {
     }
     if (element.status === "done") {
       listcontainer[3].innerHTML += createCard(element);
-      count.done +=1
+      count.done += 1;
     }
   });
-  let counter = document.querySelectorAll(".counter")
- 
-   counter[0].innerHTML=count.todo;
-   counter[1].innerHTML=count.inprogress;
-   counter[2].innerHTML=count.stuck;
-   counter[3].innerHTML=count.done;
-  
+  let counter = document.querySelectorAll(".counter");
+
+  counter[0].innerHTML = count.todo;
+  counter[1].innerHTML = count.inprogress;
+  counter[2].innerHTML = count.stuck;
+  counter[3].innerHTML = count.done;
 
   let removeBtn = document.querySelectorAll(".remove");
 
@@ -95,19 +96,17 @@ function render(data) {
   checkbtn.forEach((element) => {
     element.onclick = function () {
       moveCard(element);
-      console.log(data);
     };
   });
+
+  dragAndDrop();
 }
 function addCard(action, element) {
-  console.log(action);
   if (action === "edit") {
     const editId = element.id;
 
     for (let i = 0; i < data.length; i++) {
       if (data[i].id == editId) {
-        console.log(editId, element.id);
-        console.log(description.value);
         data[i].title = todoname.value;
         data[i].desc = description.value;
         data[i].status = statusM.value;
@@ -122,7 +121,6 @@ function addCard(action, element) {
     closeField();
     addTask.onclick = function () {
       addCard("add");
-      // plusCount();
     };
     return;
   }
@@ -143,7 +141,6 @@ function addCard(action, element) {
 
   data.push(Mockdata);
   render(data);
-  dragAndDrop();
   closeField();
 }
 
@@ -169,7 +166,6 @@ function createCard(list) {
 function deleteItem(element) {
   const findId = element.id;
   const newArr = data.filter((el) => {
-    console.log(el.id, findId);
     return el.id !== findId;
   });
   data = newArr;
@@ -186,7 +182,6 @@ addTask.onclick = function () {
   description.value = "";
   priorityM.value = "";
   statusM.value = "";
-
 };
 function moveCard(element) {
   const moveId = element.id;
@@ -200,13 +195,14 @@ function moveCard(element) {
 }
 function dragAndDrop() {
   let count = {
-    todo:0,
-    inprogress:0,
-    stuck:0,
-    done:0,
+    todo: 0,
+    inprogress: 0,
+    stuck: 0,
+    done: 0,
   };
   let drag = document.querySelectorAll(".drag");
   let card = document.querySelectorAll(".card");
+
   drag.forEach((drag) => {
     drag.addEventListener("dragstart", (event) => {
       draggedItem = event.target;
@@ -216,7 +212,8 @@ function dragAndDrop() {
       draggedItem = null;
     });
   });
-  card.forEach((card,) => {
+
+  card.forEach((card) => {
     card.addEventListener("dragover", (event) => {
       event.preventDefault();
       if (draggedItem) {
@@ -231,31 +228,29 @@ function dragAndDrop() {
     card.addEventListener("dragleave", () => {});
     card.addEventListener("drop", (event) => {
       event.preventDefault();
+      // console.log(event);
       let id = draggedItem.getAttribute("data-id");
       data.map((el) => {
         if (el.id == id) {
-          console.log(el.id , id);
           if (event.currentTarget.id === "todo") {
             el.status = "todo";
             count.todo += 1;
-          
           }
           if (event.currentTarget.id === "inprogress") {
             el.status = "in-progress";
-            count.inprogress +=1;
+            count.inprogress += 1;
           }
           if (event.currentTarget.id === "stuck") {
             el.status = "stuck";
-            count.stuck +=1;
+            count.stuck += 1;
           }
           if (event.currentTarget.id === "done") {
             el.status = "done";
-            count.done +=1;
+            count.done += 1;
           }
         }
-        render(data)
+        render(data);
       });
     });
   });
 }
-
