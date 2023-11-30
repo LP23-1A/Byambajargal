@@ -5,11 +5,11 @@ export default function Section2 (){
         <section className="py-24 px-20  border-3 border-solid border-black bg-gray-100  md: flex md:flex-col md:p-4 dark:bg-[#111827] dark:text-[#D1D5DB] ">
         <div className="flex flex-col gap-16 justify-center items-center">
           <Aboutbutton title="About me"/>
-          <div className="flex flex-col gap-24 md:flex md:flex-row md:p-4">
-            <img src={Photo2.src}></img>
+          <div className="flex flex-col gap-24 justify-center items-center md:flex md:flex-row md:p-4">
+            <img className="h-[480px] w-[400px] my-8" src={Photo2.src}></img>
             <div className="flex flex-col gap-7">
               <h1>Curius about me? Here you have it:</h1>
-              <p>I'm a passionate, self-proclaimed designer who specializes
+              <p className="">I'm a passionate, self-proclaimed designer who specializes
                  in full stack development (React.js & Node.js). I am very 
                  enthusiastic about bringing the technical and visual aspects 
                  of digital products to life. User experience, pixel perfect

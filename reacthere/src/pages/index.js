@@ -9,7 +9,7 @@ import End from "@/components/End";
 
 export default function Home() {
   return (
-    <div >
+    <div className="w-full px-0 md:px-60" >
       <Navbar />
       <Section1 />
       <Section2 />
