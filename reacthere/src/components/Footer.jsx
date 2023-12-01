@@ -1,7 +1,7 @@
 const { default: Aboutbutton } = require("./aboutbutton")
 import Contactme from "./Contact"
-import img  from "../../public/Home/Desktop/iconemail.png"
-import image from "../../public/Home/Desktop/icon Button.png"
+import img  from "../../public/Home/Desktop/Iconemail.png"
+import image from "../../public/Home/Desktop/Icon Button.png"
 import pic from "../../public/Home/Desktop/Iconphone.png"
 import IconContainer from "./IconContainer"
 
