@@ -1,7 +1,7 @@
 const Render = (props)=>{
     return(
         <div className="flex flex-col gap-8 justify-center bg-white rounded-xl p-20 md:flex-row dark:bg-[#1F2937]">
-            <img className="h-16 w-102" src={props.img}/>
+            <img className="h-[28px] w-[102px] md:h-16 w-102" src={props.img}/>
              <div className="flex flex-col-reverse gap-4 md:flex-row">
             <div className="renderdesc">
                  <h3>{props.desc}</h3>
