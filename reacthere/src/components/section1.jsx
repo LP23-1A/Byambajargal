@@ -4,7 +4,7 @@ import photo from "../../public/Home/Desktop/Pic.png";
 import IconContainer from "@/components/IconContainer";
 export default function Section1() {
   return (
-    <section className=" relative flex p-24 gap-20 flex-col-reverse sm:flex sm:flex-row sm:p-4 sm:bg-transparent dark:bg-gray-950">
+    <section className=" relative flex sm:p-24 sm:gap-20 gap-10 flex-col-reverse sm:flex sm:flex-row p-4 sm:bg-transparent dark:bg-gray-950 ">
       <div className=" flex gap-10 flex-col p-5 dark:text-slate-50 ">
         <h1 className="dark:text-[#D1D5DB]">Hi , I'm Byambajargal</h1>
         <p className="md:auto dark:text-[#D1D5DB]">
@@ -36,7 +36,7 @@ export default function Section1() {
           src={photo.src}
         ></img>
       </div>
-      <div  className="h-[300px] min-w-[270px] bg-[#D1D5DB] top-[10%] left-[30%] absolute sm:right-0 sm:top-12" >
+      <div  className=" absolute h-[300px] min-w-[270px] bg-[#D1D5DB] top-[5%] left-[9%] sm:top-[23%] sm:right-[20%] sm:left-[80%] " >
     </div>
     </section>
   );

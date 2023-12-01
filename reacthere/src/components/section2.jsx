@@ -2,12 +2,12 @@ import Photo2 from "../../public/Home/Desktop/Picsagar.png";
 import Aboutbutton from "@/components/aboutbutton";
 export default function Section2 (){
     return(
-        <section className=" relative py-24 px-20  border-3 border-solid border-black bg-gray-100  md: flex sm:flex-col sm:p-4 dark:bg-[#111827] dark:text-[#D1D5DB] ">
+        <section className=" relative sm:py-24 sm:px-20  p-5 border-3 border-solid border-black bg-gray-100  md: flex sm:flex-col sm:p-4 dark:bg-[#111827] dark:text-[#D1D5DB] ">
         <div className="flex flex-col gap-16 justify-center items-center">
           <Aboutbutton title="About me"/>
           <div className="flex flex-col gap-24 justify-center items-center md:flex md:flex-row md:p-4">
-            <img className="z-10 h-[280px] w-[360px] my-8" src={Photo2.src}></img>
-            <div className="flex flex-col gap-7">
+            <img className="z-10 h-[360px] w-[280px] sm:w-[400px] sm:h-[480px] my-8 " src={Photo2.src}></img>
+            <div className="flex flex-col gap-7 ">
               <h1>Curius about me? Here you have it:</h1>
               <p className="">I'm a passionate, self-proclaimed designer who specializes
                  in full stack development (React.js & Node.js). I am very 
@@ -50,7 +50,7 @@ export default function Section2 (){
             </div>
           </div>
         </div>
-        <div className="h-[300px] w-[280px] bg-[#D1D5DB]  absolute md:top-[35%] md:left-[30%] left-14 top-[11%]">
+        <div className="sm:h-[480px] sm:w-[400px] bg-[#D1D5DB] h-[360px] w-[300px] absolute sm:left-20 sm:top-[30%] left-14 top-[11%]">
 
         </div>
       </section>

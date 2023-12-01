@@ -16,7 +16,7 @@ export default function MobileMenu(props) {
   };
   return (
     <Layout>
-      <header className=" w-screen h-screen top-0 left-0 absolute bg-[#00000070] justify-end flex ">
+      <header className=" w-screen h-screen z-10 top-0 left-0 absolute bg-[#00000070] justify-end flex ">
         <div className="w-10/12 h-screen p-4 bg-white dark:bg-[#111827]">
           <div className="flex justify-between p-4">
             <h1>Logo</h1>

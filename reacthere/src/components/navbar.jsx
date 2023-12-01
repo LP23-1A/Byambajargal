@@ -21,8 +21,8 @@ export default function Navbar() {
     <Layout>
       <header className="flex  items-center justify-between p-10 bg-transparent dark:bg-[bg-gray-950 ]">
         <div className="text-xl">Logo</div>
-        <div className="md:hidden" onClick={menuHandler}>
-          <svg
+        <div className="sm:hidden" onClick={menuHandler}>
+        <svg
             width="36"
             height="36"
             viewBox="0 0 36 36"
