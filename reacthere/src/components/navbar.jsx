@@ -52,7 +52,7 @@ export default function Navbar() {
             />
           </svg>
         </div>
-        <div className="items-center flex-row hidden md:flex">
+        <div className="items-center flex-row hidden sm:flex">
           <ul className="flex gap-5 ">
             {["About", "Work", "Testimonial", "Contact"].map((navItem) => {
               return <li>{navItem}</li>;

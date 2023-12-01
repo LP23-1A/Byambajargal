@@ -46,7 +46,7 @@ export default function MobileMenu(props) {
             </div>
           </div>
 
-          <div className="items-center flex-row p-4 md:flex">
+          <div className="items-center flex-row p-4 sm:flex">
             <hr className="m-4" />
             <ul className="flex flex-col gap-5 ">
               {["About", "Work", "Testimonial", "Contact"].map((navItem) => {
