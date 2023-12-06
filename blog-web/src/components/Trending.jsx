@@ -1,7 +1,7 @@
 export default function Trending(props) {
   return (
     <div className="flex flex-col w-[289px] h-[320px] gap-[20px] relative ">
-      <p className="text-xl font-bold">Trending</p>
+     
       <div className="">
         <img className="rounded-xl w-[289px] h-[320px]  " src={props.trendImg}></img>
       </div>

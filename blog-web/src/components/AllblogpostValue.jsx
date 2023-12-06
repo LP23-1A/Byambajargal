@@ -7,12 +7,14 @@ const blogs = [
     desc: "The Impact of Technology on the Workplace: How Technology is Changing",
     date: "August 20, 2022",
   },
+ 
   
 ];
 
 export default function Allblogpostvalue() {
   return blogs.map((el) => {
     return (
+      
          <div className="w-[392px] h-[476px] flex flex-col p-[16px] rounded-xl border-2 border-gray-300">
              <Allblogpost
           BlogImg={el.BlogImg}
@@ -21,6 +23,8 @@ export default function Allblogpostvalue() {
           date={el.date}
         />
          </div>
+  
+        
             
     
            
