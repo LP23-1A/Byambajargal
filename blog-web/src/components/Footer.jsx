@@ -1,8 +1,8 @@
 import IconContainer from "./IconContainer";
-
+import logo from "../../public/Logo.png"
 export default function Footer() {
   return (
-    <div className="flex flex-col gap-[20px]">
+    <div className="flex flex-col gap-[40px] h-fit bg-gray-200 px-40 w-screen py-20">
       <div className="flex ">
         <div className="flex flex-col gap-[12px] w-[360px] h-[236px] text-base ">
             <p className="text-lg font-bold">About</p>
@@ -21,8 +21,17 @@ export default function Footer() {
             <IconContainer/>
         </div>
       </div>
-      <div className="flex">
-
+      <hr />
+      <div className="flex justify-between">
+      <div className="flex flex-col w-[223px] h-[54px]">
+        <img className="w-[150px] h-[40px] " src={logo.src}></img>
+        <p>© All Rights Reserved.</p>
+      </div>
+      <div className="flex gap-5">
+        <p>Terms of Use</p>
+        <p>Privacy Policy</p>
+        <p>Cookie Policy</p>
+      </div>
       </div>
     </div>
   );
