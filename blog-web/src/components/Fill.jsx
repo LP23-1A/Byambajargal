@@ -1,6 +1,6 @@
 export default function Fill (){
     return(
-        <div className="flex flex-col p-10 rounded-xl bg-[#F6F6F7] gap-10">
+        <div className="flex flex-col p-10 rounded-xl bg-[#F6F6F7] gap-10 w-[ w-[642px]">
       <p className="font-bold text-2xl">Leave message</p>
       <div className="flex gap-10">
         <input className="rounded-md border-2 border-[#696A75]" placeholder="Your Name"/>
