@@ -21,7 +21,7 @@ export default function bloglisting() {
   }, []);
   return (
     <main className="flex flex-col w-screen h-fit gap-[100px] bg-slate-50 justify-center md:px-40 ">
-      <Navbar />
+      
         <p className="font-bold text-2xl px-40">All Blog Post</p>
          <div className="flex gap-10 px-40 flex-wrap">
         {data.map((el) => {
@@ -46,7 +46,6 @@ export default function bloglisting() {
           Load more
         </button>
       </div>
-      <Footer />
     </main>
   );
 }
