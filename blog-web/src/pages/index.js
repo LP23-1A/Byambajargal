@@ -13,6 +13,7 @@ export default function Home() {
   const initData = useRef([]);
   const router = useRouter();
   const blogRouter = useRouter();
+  const singleRouter = useRouter();
   const reset = () => setData(initData.current);
   const getData = async (api) => {
     let res = await axios.get(api);
@@ -20,6 +21,9 @@ export default function Home() {
     setData(res.data);
   };
   const blogListing = () => blogRouter.push("blog-listing");
+
+  const singlePost = () => singleRouter.push("info");
+
   const filter = (name) =>
     setData(() => initData.current.filter((el) => el.tags === name));
   const handler = () => {
@@ -31,8 +35,9 @@ export default function Home() {
   }, []);
   return (
     <main className="flex flex-col w-screen h-fit gap-[100px] bg-slate-50 justify-center items-center md:px-40 ">
-      <Navbar />
-      <Ad />
+      
+      {data && data.length !== 0 && <Ad data={data} />}
+
       <div className="flex flex-col gap-10 justify-center px-40">
         <p className="px-40 font-bold text-2xl">Trending</p>
         <div className="flex gap-10 justify-center flex-wrap">
@@ -67,16 +72,19 @@ export default function Home() {
         </div>
 
         <div className="flex gap-10 px-40 flex-wrap ">
-          {data.map((el) => {
+          {data.map((el, index) => {
             return (
-              <div className=" w-[360px] h-116 border-2 border-gray-300 rounded-xl p-4">
-                <Allblogpost
-                  BlogImg={`url(${el.cover_image})`}
-                  status={el.tags}
-                  desc={el.description}
-                  date={el.published_at}
-                />
-              </div>
+              <a href={`/info/${el.id}`}>
+                <div className=" w-[360px] h-116 border-2 border-gray-300 rounded-xl p-4">
+                  <Allblogpost
+                    key={index}
+                    BlogImg={`url(${el.cover_image})`}
+                    status={el.tags}
+                    desc={el.description}
+                    date={el.published_at}
+                  />
+                </div>
+              </a>
             );
           })}
         </div>
@@ -89,7 +97,7 @@ export default function Home() {
           </button>
         </div>
       </div>
-      <Footer />
+    
     </main>
   );
 }
