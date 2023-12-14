@@ -13,7 +13,6 @@ export default function Home() {
   const initData = useRef([]);
   const router = useRouter();
   const blogRouter = useRouter();
-  const singleRouter = useRouter();
   const reset = () => setData(initData.current);
   const getData = async (api) => {
     let res = await axios.get(api);
@@ -21,8 +20,6 @@ export default function Home() {
     setData(res.data);
   };
   const blogListing = () => blogRouter.push("blog-listing");
-
-  const singlePost = () => singleRouter.push("info");
 
   const filter = (name) =>
     setData(() => initData.current.filter((el) => el.tags === name));
@@ -35,23 +32,26 @@ export default function Home() {
   }, []);
   return (
     <main className="flex flex-col w-screen h-fit gap-[100px] bg-slate-50 justify-center items-center md:px-40 ">
-      
-      {data && data.length !== 0 && <Ad data={data} />}
+     
+         {data && data.length !== 0 && <Ad data={data} />}
 
       <div className="flex flex-col gap-10 justify-center px-40">
         <p className="px-40 font-bold text-2xl">Trending</p>
         <div className="flex gap-10 justify-center flex-wrap">
           {data.map((el, index) => {
             return (
-              <div className="flex gap-10">
+              <a href={`/info/${el.id}`}>
+                 <div className="flex gap-10">
                 <Trending
                   key={index}
-                  onClick={() => handleRouter(el.id)}
+                  // onClick={() => handleRouter(el.id)}
                   trendImg={`url(${el.social_image})`}
                   status={el.tags}
                   desc={el.title}
                 />
               </div>
+              </a>
+             
             );
           })}
         </div>
@@ -97,7 +97,6 @@ export default function Home() {
           </button>
         </div>
       </div>
-    
     </main>
   );
 }

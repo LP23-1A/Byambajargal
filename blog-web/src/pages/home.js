@@ -13,7 +13,6 @@ export default function Home() {
   const initData = useRef([]);
   const router = useRouter();
   const blogRouter = useRouter();
-  const singleRouter = useRouter();
   const reset = () => setData(initData.current);
   const getData = async (api) => {
     let res = await axios.get(api);
@@ -22,8 +21,6 @@ export default function Home() {
   };
   const blogListing = () => blogRouter.push("blog-listing");
 
-  const singlePost = () => singleRouter.push("info");
-
   const filter = (name) => {
     setData(() => initData.current.filter((el) => el.tags === name));
   };
@@ -31,25 +28,31 @@ export default function Home() {
   const handler = () => {
     getData("https://dev.to/api/articles");
   };
-  const handleRouter = (id) => router.push(`id=${id}`);
+  const handleRouter = (id) => {
+    router.push(`info/${id}`);
+  }
   useEffect(() => {
     getData(api);
   }, []);
+
+ 
   return (
     <main className="flex flex-col w-screen h-fit gap-[100px] bg-slate-50 justify-center items-center md:px-40 ">
-      
-      {data && data.length !== 0 && (
+    
+         {data && data.length !== 0 && (
         <Ad
           data={data}
          
         />
       )}
+     
       <div className="flex flex-col gap-10 justify-center px-40">
         <p className="px-40 font-bold text-2xl">Trending</p>
         <div className="flex flex-wrap gap-10 justify-center">
           {data.map((el, index) => {
             return (
-              <div className="flex gap-10  flex-wrap">
+              <a href={`/info/${el.id}`}>
+                  <div className="flex gap-10  flex-wrap">
                 <Trending
                   key={index}
                   onClick={() => handleRouter(el.id)}
@@ -58,6 +61,7 @@ export default function Home() {
                   desc={el.title}
                 />
               </div>
+              </a>
             );
           })}
         </div>
