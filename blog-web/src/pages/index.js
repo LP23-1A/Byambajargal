@@ -31,7 +31,7 @@ export default function Home() {
     getData(api);
   }, []);
   return (
-    <main className="flex flex-col w-screen h-fit gap-[100px] bg-slate-50 justify-center items-center md:px-40 ">
+    <main className="flex md:flex-col md:w-screen md:h-fit md:gap-[100px] bg-slate-50 md:justify-center md:items-center md:px-40 max-w-[390px] p-0 w-full justify-center items-center">
      
          {data && data.length !== 0 && <Ad data={data} />}
 

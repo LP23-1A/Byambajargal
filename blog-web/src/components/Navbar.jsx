@@ -9,14 +9,14 @@ export default function Navbar() {
   const blogRouter = useRouter();
   const blogPage = () => blogRouter.push("blog-listing");
   return (
-    <div className="flex gap-10 p-4 justify-center items-center bg-slate-50">
+    <div className=" md:flex md:gap-10 md:p-4 md:justify-center md:items-center bg-slate-50 p-0 ">
       <img className="w-[158px] h-[36px]" src={logo.src}></img>
-      <div className=" flex justify-center text-gray-400 w-[667px] gap-[40px]">
+      <div className=" md:flex md:justify-center  text-gray-400 md:w-[667px] md:gap-[40px] hidden ">
         <p onClick={homePage}>Home</p>
         <p onClick={blogPage}>Blog</p>
         <p onClick={contactPage}>Contact</p>
       </div>
-      <div className="flex w-[166px] h-[36px] gap-[12px] p-[8px] items-center">
+      <div className="md:flex md:w-[166px] md:h-[36px] md:gap-[12px] md:p-[8px] md:items-center hidden">
         <input placeholder="search" className="p-1 rounded-md bg-[#F4F4F5]" />
         <img src={search.src}></img>
       </div>

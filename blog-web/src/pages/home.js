@@ -1,6 +1,4 @@
 import Ad from "@/components/Ad";
-import Footer from "@/components/Footer";
-import Navbar from "@/components/Navbar";
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import Allblogpost from "@/components/Allblogpost";
@@ -26,7 +24,7 @@ export default function Home() {
   };
 
   const handler = () => {
-    getData("https://dev.to/api/articles");
+    getData('https://dev.to/api/articles');
   };
   const handleRouter = (id) => {
     router.push(`info/${id}`);

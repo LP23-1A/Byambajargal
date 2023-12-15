@@ -18,7 +18,7 @@ export default function Ad({ data }) {
     setActiveIndex((prev) => prev - 1);
   };
   return (
-    <div className="flex flex-col gap-4">
+    <div className="md:flex md:flex-col md:gap-4 hidden">
       <div className="relative">
         <div
           style={{
@@ -26,9 +26,9 @@ export default function Ad({ data }) {
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
           }}
-          className="w-[1216px] h-[600px]  rounded-md"
+          className=" md:w-[1216px] md:h-[600px]  rounded-md w-fit"
         ></div>
-        <div className="w-[598px] h-[252px] absolute bottom-2 left-2 bg-slate-50 py-[40px] px-[20px] flex flex-col gap-[24px] rounded-md">
+        <div className=" md:w-[598px] md:h-[252px] absolute bottom-2 left-2 bg-slate-50 py-[40px] px-[20px] flex flex-col gap-[24px] rounded-md w-fit">
           <button className="bg-[#4B6BFB]  p-[4px] w-fit h-[28px] text-white rounded-md ">
             {data[activeIndex].tags}
           </button>
