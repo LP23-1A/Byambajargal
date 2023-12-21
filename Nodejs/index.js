@@ -1,10 +1,12 @@
 import express from "express";
 import bp from "body-parser";
 import mongoose from "mongoose";
-import Url from "./schema/url.js";
+import Url from "./schema/Url.js";
+import { nanoid } from "nanoid";
+import dotenv from "dotenv"
+dotenv.config
 const PORT = 8000;
-const MONGODB_URL =
-  "mongodb+srv://admin:admin123@url-shortener.zr3sxmw.mongodb.net/?retryWrites=true&w=majority";
+const MONGODB_URL =process.env.MONGODB_URL
 const app = express();
 
 app.use(bp.json());
@@ -24,23 +26,41 @@ app.use(bp.json());
 //     }
 // ]
 
-app.get("/", async (req, res) => {
+app.get("/", async (_, res) => {
   const response = await Url.find();
-  res.send({ success: true, response }).end();
+  res.send(response).end();
 });
 
-// app.get('/:id' , (req , res) =>{
-// const id = req.params.id;
 
-// const filteredData = users.filter((user) => user.id === parseInt(id));
+app.get('/:url' , async (req , res) =>{
 
-// res.send({success:true, users:filteredData}).end();
-// })
+  const {url} = req.params;
+  const short = await Url.findOne({
+    shortUrl : url
+  });
+  req.redirect(short.orgUrl)
+
+});
+
 
 app.post("/", async (req, res) => {
-  const newUrl = await Url.create(req.body);
+  const {url} = req.body;
+  const newUrl = await Url.create( {
+    orgUrl: url,
+    shortUrl:nanoid(10)
+  });
 
   res.send({ success: true, urls: newUrl }).end();
+});
+
+
+app.delete("/:url", async (request, response) => {
+  const { url } = request.params;
+
+  const { acknowledged, deletedCount } = await Url.deleteOne({
+    shortUrl: url,
+  });
+  response.send({ success: acknowledged, removedCount: deletedCount }).end();
 });
 
 // app.put ('/:id' , (req, res) => {
