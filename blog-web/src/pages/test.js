@@ -13,7 +13,6 @@ export default function test() {
         }
         setData(...data, ...mock)
     }    
-    console.log(data);
    const sendRequest = async () =>{
    let response = await axios.post("https://dev.to/api/articles", data)
    }
@@ -24,6 +23,27 @@ export default function test() {
             <input onChange={(e) => handlerInputValue.apply(e, "tags")} placeholder="tags"></input>
             <input onChange={(e) => handlerInputValue.apply(e, "series")} placeholder="series"></input>
             <button className="rounded-xl bg-red-200 w-fit p-2">Add</button>
+                 {/* <div className="flex flex-col gap-10 justify-center px-40">
+        <p className="px-40 font-bold text-2xl">Trending</p>
+        <div className="flex flex-wrap gap-10 justify-center">
+          {data.map((el, index) => {
+            return (
+              <a href={`/info/${el.id}`}>
+                <div className="flex gap-10  flex-wrap">
+                  <Trending
+                    key={index}
+                    onClick={() => handleRouter(el.id)}
+                    trendImg={`url(${el.social_image})`}
+                    status={el.tags}
+                    desc={el.title}
+                  />
+                </div>
+              </a>
+            );
+          })}
         </div>
+      </div> */}
+        </div>
+        
     )
 }

@@ -1,24 +1,26 @@
 import Ad from "@/components/Ad";
-import Footer from "@/components/Footer";
-import Navbar from "@/components/Navbar";
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import Allblogpost from "@/components/Allblogpost";
-import Trending from "@/components/Trending";
 import { useRouter } from "next/router";
 
-let api = "https://dev.to/api/articles?username=gereltuyamz";
+let api =  "https://dev.to/api/articles";
 export default function Home() {
   const [data, setData] = useState([]);
+  const [fetchedData, setFetchedData] = useState([]);
+  const [count, setCount] = useState(6);
   const initData = useRef([]);
   const router = useRouter();
   const blogRouter = useRouter();
+
   const reset = () => setData(initData.current);
+
   const getData = async (api) => {
     let res = await axios.get(api);
     initData.current = res.data;
-    setData(res.data);
+    setData((allData) => [...allData, ...res.data]);
   };
+  
   const blogListing = () => blogRouter.push("blog-listing");
 
   const filter = (name) => {
@@ -26,65 +28,41 @@ export default function Home() {
   };
 
   const handler = () => {
-    getData("https://dev.to/api/articles");
+    setCount((prevCount) => prevCount + 6);
   };
-  const handleRouter = (id) => {
-    router.push(`info/${id}`);
-  }
   useEffect(() => {
     getData(api);
   }, []);
 
- 
-  return (
-    <main className="flex flex-col w-screen h-fit gap-[100px] bg-slate-50 justify-center items-center md:px-40 ">
-    
-         {data && data.length !== 0 && (
-        <Ad
-          data={data}
-         
-        />
-      )}
-     
-      <div className="flex flex-col gap-10 justify-center px-40">
-        <p className="px-40 font-bold text-2xl">Trending</p>
-        <div className="flex flex-wrap gap-10 justify-center">
-          {data.map((el, index) => {
-            return (
-              <a href={`/info/${el.id}`}>
-                  <div className="flex gap-10  flex-wrap">
-                <Trending
-                  key={index}
-                  onClick={() => handleRouter(el.id)}
-                  trendImg={`url(${el.social_image})`}
-                  status={el.tags}
-                  desc={el.title}
-                />
-              </div>
-              </a>
-            );
-          })}
-        </div>
-      </div>
+  useEffect(() => {
+    if (data.length > 0) {
+      setFetchedData(data.slice(0, count));
+    }
+  }, [data, count]);
 
-      <div className="flex flex-col gap-[32px] py-20 px-40 justify-center ">
-        <h1 className="font-bold px-40 text-2xl">All Blog post</h1>
-        <div className="flex justify-between px-40">
-          <div className="flex gap-[20px] text-xs font-bold">
+  return (
+    <main className="flex flex-col w-screen h-fit gap-[100px] bg-slate-50 justify-center px-40 items-center md:px-40 ">
+      {data && data.length !== 0 && <Ad data={data} />}
+
+      <div className="flex flex-col gap-[32px] justify-between w-full">
+        <h1 className="font-bold px-20 text-2xl">All Blog post</h1>
+        <div className="flex justify-between px-20">
+          <div className="flex gap-[20px] text-s font-bold">
             <p onClick={reset}>All</p>
             <p onClick={() => filter("webdev")}>webdev</p>
             <p onClick={() => filter("programming")}>programming</p>
             <p onClick={() => filter("nextjs")}>nextjs</p>
           </div>
-          <p onClick={blogListing} className="text-xs font-bold px-40 ">
+          <p onClick={blogListing} className="text-s font-bold">
             View all
           </p>
         </div>
+      </div>
 
-        <div className="flex gap-10 px-40 flex-wrap ">
-          {data.map((el , index) => {
-            return (
-              <a href={`/info/${el.id}`}>
+      <div className="flex w-fit justify-center gap-16 flex-wrap ">
+        {fetchedData.map((el, index) => {
+          return (
+            <a href={`/info/${el.id}`}>
               <div className=" w-[360px] h-116 border-2 border-gray-300 rounded-xl p-4">
                 <Allblogpost
                   key={index}
@@ -95,19 +73,17 @@ export default function Home() {
                 />
               </div>
             </a>
-            );
-          })}
-        </div>
-        <div className="flex justify-center items-center p-20 ">
-          <button
-            onClick={handler}
-            className="border-2 border-gray-300 h-10 w-40 rounded-xl"
-          >
-            Load more
-          </button>
-        </div>
+          );
+        })}
       </div>
-      
+      <div className="flex justify-center items-center p-20 ">
+        <button
+          onClick={handler}
+          className="border-2 border-gray-300 h-10 w-40 rounded-xl"
+        >
+          Load more
+        </button>
+      </div>
     </main>
   );
 }

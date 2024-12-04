@@ -20,10 +20,10 @@ export default function bloglisting() {
     getData(api);
   }, []);
   return (
-    <main className="flex flex-col w-screen h-fit gap-[100px] bg-slate-50 justify-center md:px-40 ">
+    <main className="flex flex-col w-screen h-fit gap-[100px] bg-slate-50 justify-center md:px-20 ">
       
         <p className="font-bold text-2xl px-40">All Blog Post</p>
-         <div className="flex gap-10 px-40 flex-wrap">
+         <div className="flex gap-10 px-20 flex-wrap justify-center">
         {data.map((el) => {
           return (
             <div className=" w-[360px] h-116 border-2 border-gray-300 rounded-xl p-4">
